@@ -1,0 +1,75 @@
+-- ANTI BOT SISTEM GUI
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local UserInputService = game:GetService("UserInputService")
+
+-- Criar ScreenGui
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "AntiBotSistemGUI"
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Parent = player:WaitForChild("PlayerGui")
+
+-- Frame principal
+local MainFrame = Instance.new("Frame")
+MainFrame.Size = UDim2.new(0, 350, 0, 180)
+MainFrame.Position = UDim2.new(0.5, -175, 0.5, -90)
+MainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+MainFrame.BorderSizePixel = 0
+MainFrame.Active = true
+MainFrame.Draggable = true
+MainFrame.Parent = ScreenGui
+
+-- Bordas arredondadas
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 15)
+UICorner.Parent = MainFrame
+
+-- Título
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1, 0, 0, 50)
+Title.BackgroundTransparency = 1
+Title.Text = "ANTI BOT SISTEM"
+Title.TextColor3 = Color3.fromRGB(255, 80, 80)
+Title.Font = Enum.Font.GothamBold
+Title.TextSize = 22
+Title.Parent = MainFrame
+
+-- Botão Join Group
+local JoinButton = Instance.new("TextButton")
+JoinButton.Size = UDim2.new(0, 260, 0, 50)
+JoinButton.Position = UDim2.new(0.5, -130, 0.5, -10)
+JoinButton.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+JoinButton.Text = "JOIN GROUP"
+JoinButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+JoinButton.Font = Enum.Font.GothamBold
+JoinButton.TextSize = 18
+JoinButton.Parent = MainFrame
+
+-- Bordas do botão
+local ButtonCorner = Instance.new("UICorner")
+ButtonCorner.CornerRadius = UDim.new(0, 12)
+ButtonCorner.Parent = JoinButton
+
+-- Efeito hover
+JoinButton.MouseEnter:Connect(function()
+	JoinButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+end)
+
+JoinButton.MouseLeave:Connect(function()
+	JoinButton.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+end)
+
+-- Link para copiar
+local link = "https://www.roblox.com/users/1043659946/profile"
+
+-- Função copiar
+JoinButton.MouseButton1Click:Connect(function()
+	if setclipboard then
+		setclipboard(link)
+		JoinButton.Text = "LINK COPIADO!"
+		task.wait(1.5)
+		JoinButton.Text = "JOIN GROUP"
+	else
+		warn("Clipboard não suportado neste executor.")
+	end
+end)
